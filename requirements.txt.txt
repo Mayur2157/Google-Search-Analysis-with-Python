@@ -1,0 +1,5 @@
+Flask
+google-api-python-client
+pandas
+plotly
+TextBlob

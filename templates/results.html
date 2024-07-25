@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+        <a href="{{ url_for('index') }}">Back to Search</a>
+        <div>
+            <h2>Results Table</h2>
+            <div class="table-container">
+                {% if tables %}
+                    {{ tables|safe }}
+                {% else %}
+                    <p>No results found.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <h2>Keyword Frequency</h2>
+            <div class="table-container">
+                {% if keyword_freq %}
+                    {{ keyword_freq|safe }}
+                {% else %}
+                    <p>No keyword frequency data available.</p>
+                {% endif %}
+            </div>
+            {{ keyword_freq_plot|safe }}
+        </div>
+        <div>
+            <h2>Sentiment Analysis</h2>
+            {{ sentiment_plot|safe }}
+            <div class="sentiment-breakdown">
+                <h3>Sentiment Breakdown</h3>
+                <ul>
+                    {% for sentiment, count in sentiment_counts.items() %}
+                        <li>{{ sentiment }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
